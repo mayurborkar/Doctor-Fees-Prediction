@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import pickle
+import pickle 
 
 app = Flask(__name__)
 
@@ -9,12 +9,12 @@ model = pickle.load(open('doctor_fees.pkl','rb'))
 def home():
     return render_template('home.html')
 
-@app.route("/predict", methods=['GET', 'POST'])
+@app.route("/predict", methods=['GET','POST'])
 def predict():
     if request.method == 'POST':
         
-        #Profile
-        Profile = request.form ['Profile']
+        # Profile
+        Profile = request.form["Profile"]
         if(Profile == "Ayurveda"):
             Profile_Ayurveda = 1
             Profile_Dentist = 0
@@ -22,8 +22,8 @@ def predict():
             Profile_ENT_Specialist = 0
             Profile_General_Medicine = 0
             Profile_Homeopath = 0
-            
-        elif(Profile == 'Dentsit'):
+        
+        elif(Profile == "Dentist"):
             Profile_Ayurveda = 0
             Profile_Dentist = 1
             Profile_Dermatologists = 0
@@ -31,7 +31,7 @@ def predict():
             Profile_General_Medicine = 0
             Profile_Homeopath = 0
             
-        elif(Profile == 'Dermatologists'):
+        elif(Profile == "Dermatologists"):
             Profile_Ayurveda = 0
             Profile_Dentist = 0
             Profile_Dermatologists = 1
@@ -39,7 +39,7 @@ def predict():
             Profile_General_Medicine = 0
             Profile_Homeopath = 0
             
-        elif(Profile == 'ENT_Specialist'):
+        elif(Profile == "ENT Specialist"):
             Profile_Ayurveda = 0
             Profile_Dentist = 0
             Profile_Dermatologists = 0
@@ -47,7 +47,7 @@ def predict():
             Profile_General_Medicine = 0
             Profile_Homeopath = 0
             
-        elif(Profile == 'General_Medicine'):
+        elif(Profile == "General Medicine"):
             Profile_Ayurveda = 0
             Profile_Dentist = 0
             Profile_Dermatologists = 0
@@ -55,7 +55,7 @@ def predict():
             Profile_General_Medicine = 1
             Profile_Homeopath = 0
             
-        elif(Profile == 'Homeopath'):
+        elif(Profile == "Homeopath"):
             Profile_Ayurveda = 0
             Profile_Dentist = 0
             Profile_Dermatologists = 0
@@ -204,42 +204,42 @@ def predict():
             MD_General_Medicine = 0
             Diploma_in_Otorhinolaryngology = 0
             MD_Homeopathy = 0
-            
-        #Experiance
-        Experiance = request.form["Experiance"]
-        Experiance = int(Experiance)
-        
-        #Ratings
+
+        #Experience
+        Experience = request.form["Experience"]
+        Experience = int(Experience)
+
+        #Rating
         Rating = request.form["Rating"]
         Rating = int(Rating)
-        if (Rating < 0):
+        if(Rating < 0):
             Rating = 0
-        elif(Rating >= 0) & (Rating <10):
+        elif (Rating >= 0) & (Rating < 10):
             Rating = 1
-        elif(Rating >= 10) & (Rating <20):
+        elif (Rating >=10) & (Rating < 20):
             Rating = 2
-        elif(Rating >= 20) & (Rating <30):
+        elif (Rating >=20) & (Rating < 30):
             Rating = 3
-        elif(Rating >= 30) & (Rating <40):
+        elif (Rating >=30) & (Rating < 40):
             Rating = 4
-        elif(Rating >= 40) & (Rating <50):
+        elif (Rating >=40) & (Rating < 50):
             Rating = 5
-        elif(Rating >= 50) & (Rating <60):
+        elif (Rating >=50) & (Rating < 60):
             Rating = 6
-        elif(Rating >= 60) & (Rating <70):
+        elif (Rating >=60) & (Rating < 70):
             Rating = 7
-        elif(Rating >= 70) & (Rating <80):
+        elif (Rating >=70) & (Rating < 80):
             Rating = 8
-        elif(Rating >= 80) & (Rating <90):
+        elif (Rating >=80) & (Rating < 90):
             Rating = 9
-        elif(Rating >= 90) & (Rating <=100):
+        elif (Rating >= 90) & (Rating <= 100):
             Rating = 10
         else:
             Rating = 0
             
-        #City
-        City = reqest.form['City']
-        if(City == 'Banglore'):
+        #city
+        city = request.form["city"]
+        if (city == "Bangalore"):
             city_Bangalore = 1
             city_Chennai = 0
             city_Coimbatore = 0
@@ -250,7 +250,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Chennai"):
+        elif (city == "Chennai"):
             city_Bangalore = 0
             city_Chennai = 1
             city_Coimbatore = 0
@@ -261,7 +261,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Coimbatore"):
+        elif (city == "Coimbatore"):
             city_Bangalore = 0
             city_Chennai = 0
             city_Coimbatore = 1
@@ -272,7 +272,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Delhi"):
+        elif (city == "Delhi"):
             city_Bangalore = 0
             city_Chennai = 0
             city_Coimbatore = 0
@@ -283,7 +283,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Ernakulam"):
+        elif (city == "Ernakulam"):
             city_Bangalore = 0
             city_Chennai = 0
             city_Coimbatore = 0
@@ -294,7 +294,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Hyderabad"):
+        elif (city == "Hyderabad"):
             city_Bangalore = 0
             city_Chennai = 0
             city_Coimbatore = 0
@@ -305,7 +305,7 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Mumbai"):
+        elif (city == "Mumbai"):
             city_Bangalore = 0
             city_Chennai = 0
             city_Coimbatore = 0
@@ -316,9 +316,9 @@ def predict():
             city_Thiruvananthapuram = 0
             city_Unknown = 0
             
-        elif(City == "Thiruvananthapuram"):
+        elif (city == "Thiruvananthapuram"):
             city_Bangalore = 0
-            city_Chennai = 1
+            city_Chennai = 0
             city_Coimbatore = 0
             city_Delhi = 0
             city_Ernakulam = 0
@@ -336,7 +336,7 @@ def predict():
             city_Hyderabad = 0
             city_Mumbai = 0            
             city_Thiruvananthapuram = 0
-            city_Unknown = 0
+            city_Unknown = 1
             
         prediction = model.predict([[
                 Experience,
@@ -368,6 +368,7 @@ def predict():
                 Profile_Homeopath
             ]])
         
+
         Fees = round(prediction[0],2)  
         
         return render_template('home.html', prediction_text="Your Doctor consultancy Fees is Rs. {}".format(Fees))
@@ -376,30 +377,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
